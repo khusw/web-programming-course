@@ -18,15 +18,17 @@
 
         <div class="content container">
             <div class="row">
-                <div class="col-md-8">
-                    <div class="img container">
+                <div class="img container">
                         <img src="{% static 'img/image1.jpg' %}" width="300" height="300">
-                    </div>
-                    <div class="video container">
-                        <video src="{% static 'video/web_service.mp4' %}" controls>
-                            해당 브라우저는 video 태그를 지원하지 않습니다
-                        </video>
-                    </div>
+                </div>
+                <div class="video container">
+                    <video src="{% static 'video/web_service.mp4' %}" controls>
+                        해당 브라우저는 video 태그를 지원하지 않습니다
+                    </video>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
                     {% for post in posts %}
                         <div class="post">
                             <div class="date">
