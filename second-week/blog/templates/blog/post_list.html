@@ -1,39 +1,21 @@
 <!-- Author: sdy -->
 {% extends 'blog/base.html' %}
-{% load static %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Django Girls Blog</title>
-        <meta charset="UTF-8">
-        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-    </head>
-    <body>
 
-        <div class="page-header">
-            <h1><a href="/">Web Service Programming blog</a></h1>
+{% block content %}
+    {% for post in posts %}
+    <div class="post">
+        <div class="date">
+            {{ post.created_date }}
         </div>
-
-        <div class="content container">
-            <div class="row">
-                <div class="col-md-8">
-                    {% block content %}
-                        {% for post in posts %}
-                            <div class="post">
-                                <div class="date">
-                                    {{ post.created_date }}
-                                </div>
-                                <h1><a href="">{{ post.title }}</a></h1>
-                                <p>{{ post.text|linebreaksbr }}</p>
-                            </div>
-                        {% endfor %}
-                    {% endblock %}
-                </div>
-            </div>
-        </div>
-
-    </body>
-</html>
+        <h1>
+            <!--
+                "{% ~ " 는 django 를 이해시키기 위한 코드이고
+                url ~ 은 views.py 에 있는 post_detail 과 연동시켜라 라는 의미이며
+                post.pk 는 기본키를 의미한다 (primary key)
+            -->
+            <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+        </h1>
+        <p>{{ post.text|linebreaksbr }}</p>
+    </div>
+    {% endfor %}
+{% endblock %}
